@@ -12,6 +12,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.ms.board.Dao.BoardDao;
 import com.ms.board.Vo.BoardVo;
 
@@ -73,6 +74,7 @@ public class boardDaoTest {
 	}
 	
 	@Test
+	@Ignore
 	public void testUpdatePosts() throws Exception{
 		
 		BoardVo posts = new BoardVo();
