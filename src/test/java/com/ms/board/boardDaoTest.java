@@ -74,7 +74,6 @@ public class boardDaoTest {
 	}
 	
 	@Test
-	@Ignore
 	public void testUpdatePosts() throws Exception{
 		
 		BoardVo posts = new BoardVo();
