@@ -37,7 +37,7 @@
 	
 	<!-- MongoDB Setting -->
 	<mongo:mongo-client id="mongoClient" host="localhost" port="27017" />
-    <mongo:db-factory id="mongoDbFactory" dbname="test_db" mongo-ref="mongoClient"/>
+    <mongo:db-factory id="mongoDbFactory" dbname="study" mongo-ref="mongoClient"/>
     <bean id="mongoTemplate" class="org.springframework.data.mongodb.core.MongoTemplate">
         <constructor-arg name="mongoDbFactory" ref="mongoDbFactory" />
     </bean>
