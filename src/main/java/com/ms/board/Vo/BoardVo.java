@@ -2,6 +2,8 @@ package com.ms.board.Vo;
 
 import java.time.LocalDate;
 
+import org.springframework.data.annotation.Id;
+
 import lombok.Getter;
 import lombok.Setter;
 
@@ -9,7 +11,9 @@ import lombok.Setter;
 @Setter
 public class BoardVo {
 	
-	private int bno;
+	@Id
+	private String id;
+	private int bno; //mysql¸¸ Á¸Àç
 	private String title;
 	private String content;
 	private int count;

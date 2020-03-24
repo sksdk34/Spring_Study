@@ -18,6 +18,20 @@ public class MongoDao {
 	@Inject
 	private MongoTemplate mongoTemplate;
 	
+	public List<BoardVo> boardList() {
+		
+		return mongoTemplate.findAll(BoardVo.class, "board");
+	}
+	
+	public BoardVo getPost(String id) {
+		
+		Criteria criteria = new Criteria("_id")
+				.is(id);
+		Query query = new Query(criteria);
+		
+		return mongoTemplate.findOne(query, BoardVo.class, "board");
+	}
+	
 	public void insertOne(Document document) {
 		
 //		Map<String, Object> map = new HashMap<>();
@@ -29,10 +43,10 @@ public class MongoDao {
 	
 	public List<BoardVo> find(String item){
 		
-//		Criteria criteria = new Criteria("title").is(item);
-//		Query query = new Query(criteria);
-//		
-//		return mongoTemplate.find(query, BoardVo.class, "inventory");
-		return mongoTemplate.findAll(BoardVo.class, "inventory");
+		Criteria criteria = new Criteria("title").is(item);
+		Query query = new Query(criteria);
+		
+		return mongoTemplate.find(query, BoardVo.class, "inventory");
+//		return mongoTemplate.findAll(BoardVo.class, "inventory");
 	}
 }

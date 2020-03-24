@@ -39,11 +39,21 @@ public class MongoDBTest {
 	}
 	
 	@Test
-	public void QueryTest() {
+	@Ignore
+	public void boardListTest() {
 		
-		List<BoardVo> documents = mongoDao.find("test1");
-		for(int i=0; i<documents.size(); i++) {
-			logger.info("result : " + documents.get(i).getContent());
+		List<BoardVo> list = mongoDao.boardList();
+		for(BoardVo post : list) {
+			logger.info("title : " + post.getTitle());
+			logger.info("content : " + post.getContent());
 		}
+	}
+	
+	@Test
+	public void postTest() {
+		
+		BoardVo post = mongoDao.getPost("5e79a218ee8dacd24c9939ac");
+		logger.info("title : " + post.getTitle());
+		logger.info("content : " + post.getContent());
 	}
 }
