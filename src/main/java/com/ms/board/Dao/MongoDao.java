@@ -4,10 +4,10 @@ import java.util.List;
 
 import javax.inject.Inject;
 
-import org.bson.Document;
 import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
+import org.springframework.data.mongodb.core.query.Update;
 import org.springframework.stereotype.Repository;
 
 import com.ms.board.Vo.BoardVo;
@@ -32,21 +32,29 @@ public class MongoDao {
 		return mongoTemplate.findOne(query, BoardVo.class, "board");
 	}
 	
-	public void insertOne(Document document) {
+	public void insertPost(BoardVo post) {
 		
-//		Map<String, Object> map = new HashMap<>();
-//		map.put("title", data.getTitle());
-//		map.put("contents", data.getContent());
-//		mongoTemplate.insert(map, "inventory");
-		mongoTemplate.insert(document, "inventory");
+		mongoTemplate.insert(post, "board");
 	}
 	
-	public List<BoardVo> find(String item){
+	public void updatePost(BoardVo post) {
 		
-		Criteria criteria = new Criteria("title").is(item);
+		Criteria criteria = new Criteria("_id")
+				.is(post.getId());
+		Query query = new Query(criteria);
+		Update update = new Update()
+				.set("title", post.getTitle())
+				.set("content", post.getContent());
+		
+		mongoTemplate.updateFirst(query, update, "board");
+	}
+
+	public void deletePost(String id) {
+		
+		Criteria criteria = new Criteria("_id")
+				.is(id);
 		Query query = new Query(criteria);
 		
-		return mongoTemplate.find(query, BoardVo.class, "inventory");
-//		return mongoTemplate.findAll(BoardVo.class, "inventory");
+		mongoTemplate.remove(query, BoardVo.class, "board");
 	}
 }

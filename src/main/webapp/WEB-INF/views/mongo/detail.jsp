@@ -34,7 +34,7 @@
         </tr>
       </tbody>
     </table>
-    <form action="/board/mongo/post/${post.bno}" method="POST">
+    <form action="/board/mongo/post/${post.id}" method="POST">
       <input type="hidden" name="_method" value="DELETE" />
       <input type="submit" value="DELETE">
     </form>
@@ -47,6 +47,6 @@
 <script>
   //게시글 수정 페이지 이동
   $('#update').click(function(){
-    location.href="/board/mongo/post/${post.bno}";
+    location.href="/board/mongo/post/${post.id}";
   })
 </script>

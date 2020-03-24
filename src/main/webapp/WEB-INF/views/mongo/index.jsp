@@ -46,6 +46,6 @@
 <script>
   //게시글 작성 페이지 이동
   $('#write').click(function(){
-    location.href = "/board/mongo/posts";
+    location.href = "/board/mongo/post";
   })
 </script>

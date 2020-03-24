@@ -24,4 +24,20 @@ public class MongoService {
 		
 		return mongoDao.getPost(id);
 	}
+	
+	public void insertPost(BoardVo post) {
+		
+		mongoDao.insertPost(post);
+	}
+	
+	public BoardVo updatePost(BoardVo post) {
+		
+		mongoDao.updatePost(post);
+		return mongoDao.getPost(post.getId());
+	}
+	
+	public void deletePost(String id) {
+		
+		mongoDao.deletePost(id);
+	}
 }

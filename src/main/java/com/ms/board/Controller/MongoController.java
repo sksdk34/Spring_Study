@@ -45,4 +45,51 @@ public class MongoController {
 		
 		return model;
 	}
+	
+	//게시글 작성 페이지
+	@RequestMapping(value="/post", method=RequestMethod.GET)
+	public String write() {
+		
+		return "mongo/write";
+	}
+	
+	//게시글 작성 처리
+	@RequestMapping(value="/post", method=RequestMethod.POST)
+	public String write(BoardVo post) {
+		
+		mongoService.insertPost(post);
+		
+		return "redirect:/mongo/boardList";
+	}
+	
+	//게시글 수정 페이지
+	@RequestMapping(value="/post/{id}", method=RequestMethod.GET)
+	public ModelAndView update(@PathVariable String id) {
+
+		BoardVo post = mongoService.detail(id);
+		
+		ModelAndView model = new ModelAndView();
+		model.setViewName("mongo/update");
+		model.addObject("post", post);
+		
+		return model;
+	}
+	
+	//게시글 수정 처리
+	@RequestMapping(value="/post/{id}", method=RequestMethod.PUT)
+	public String update(@PathVariable String id, BoardVo updatePost) {
+		
+		BoardVo post = mongoService.updatePost(updatePost);
+		
+		return "redirect:/mongo/" + post.getId();
+	}
+	
+	//게시글 삭제 처리
+	@RequestMapping(value="/post/{id}", method=RequestMethod.DELETE)
+	public String delete(@PathVariable String id) {
+		
+		mongoService.deletePost(id);
+		
+		return "redirect:/mongo/boardList";
+	}
 }

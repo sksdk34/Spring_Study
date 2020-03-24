@@ -27,17 +27,7 @@ public class MongoDBTest {
 	
 	@Inject
 	private MongoDao mongoDao;
-	
-	@Test
-	@Ignore
-	public void ConnectTest() {
 		
-		Document document = new Document("item", "canvas")
-				.append("qty", 100)
-				.append("tags", "cotton");
-		mongoDao.insertOne(document);
-	}
-	
 	@Test
 	@Ignore
 	public void boardListTest() {
@@ -50,10 +40,40 @@ public class MongoDBTest {
 	}
 	
 	@Test
+	@Ignore
 	public void postTest() {
 		
 		BoardVo post = mongoDao.getPost("5e79a218ee8dacd24c9939ac");
 		logger.info("title : " + post.getTitle());
 		logger.info("content : " + post.getContent());
+	}
+	
+	@Test
+	@Ignore
+	public void insertPostTest() {
+		
+		BoardVo post = new BoardVo();
+		post.setTitle("Insert Test Title");
+		post.setContent("Insert Test Title");
+		post.setWriter("Insert Test Writer");
+		
+		mongoDao.insertPost(post);
+	}
+	
+	@Test
+	@Ignore
+	public void updatePostTest() {
+		
+		BoardVo post = new BoardVo();
+		post.setTitle("Update Title");
+		post.setContent("Update Content");
+		
+		mongoDao.updatePost(post);
+	}
+	
+	@Test
+	public void deletePostTest() {
+		
+		mongoDao.deletePost("5e79a218ee8dacd24c9939ac");
 	}
 }
