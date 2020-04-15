@@ -8,6 +8,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
 
 import com.ms.board.Vo.BoardVo;
+import com.ms.board.Vo.Orders;
 
 @Repository("BoardDao")
 public class BoardDao {
@@ -40,5 +41,10 @@ public class BoardDao {
 	public void updatePosts(BoardVo posts) throws Exception{
 		
 		sqlSession.update(Namespace + ".update", posts);
+	}
+	
+	public List<Orders> testJoin(int cno) throws Exception{
+		
+		return sqlSession.selectList(Namespace + ".join", cno);
 	}
 }

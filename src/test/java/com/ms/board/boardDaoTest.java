@@ -12,9 +12,9 @@ import org.slf4j.LoggerFactory;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.ms.board.Dao.BoardDao;
 import com.ms.board.Vo.BoardVo;
+import com.ms.board.Vo.Orders;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = { 
@@ -28,6 +28,17 @@ public class boardDaoTest {
 	
 	@Inject
 	private BoardDao boardDao;
+	
+	@Test
+	public void testJoin() throws Exception{
+		
+		List<Orders> list = boardDao.testJoin(1);
+		for(Orders item : list) {
+			logger.info("ono : " + item.getOno());
+			logger.info("cno : " + item.getCno());
+//			logger.info("ono : " + item.getName());
+		}
+	}
 	
 	@Test
 	@Ignore
@@ -74,6 +85,7 @@ public class boardDaoTest {
 	}
 	
 	@Test
+	@Ignore
 	public void testUpdatePosts() throws Exception{
 		
 		BoardVo posts = new BoardVo();

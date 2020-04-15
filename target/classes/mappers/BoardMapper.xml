@@ -30,4 +30,14 @@
 		SET title=#{title}, content=#{content}, editTime=now()
 		WHERE bno=#{bno}
 	</update>
+	
+	<select id="join" resultType="com.ms.board.Vo.Orders">
+		SELECT O.ono, O.amount, O.cno
+		FROM orders O
+		WHERE O.cno = (
+			SELECT C.cno
+			FROM customer C
+			WHERE C.cno = #{cno} 
+		)
+	</select>
 </mapper>
